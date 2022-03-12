@@ -10,20 +10,18 @@ function sort(nums) {
   // call snapshot any time you do anything to the array
   // it's okay if you call it with duplicate value array,
   // it will deduplicate for you
-  let swapped = false;
-  do {
-    swapped = false;
-    for (let i = 0; i < nums.length - 1; i++) {
-      snapshot(nums);
-      if (nums[i] > nums[i + 1]) {
-        swapped = true;
-        let temp = nums[i];
-        nums[i] = nums[i + 1];
-        nums[i + 1] = temp;
-      }
-    }
-  } while (swapped);
+  // code goes here
   snapshot(nums);
+  for (let i = 1; i < nums.length; i++) {
+    let numberToInsert = nums[i];
+    let j;
+    for (j = i - 1; nums[j] > numberToInsert && j >= 0; j--) {
+      nums[j + 1] = nums[j];
+    }
+    nums[j + 1] = numberToInsert;
+    snapshot(nums);
+  }
+  return nums;
 }
 
 export default function SortComponent() {
